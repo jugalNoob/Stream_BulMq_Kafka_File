@@ -1,0 +1,59 @@
+const express = require('express');
+const { Queue, Worker } = require('bullmq');
+
+const port = 9000;
+
+const app = express();
+app.use(express.json()); // Middleware to parse JSON requests
+
+// Initialize the job queue
+const queue = new Queue('my-queue', {
+  connection: {
+    host: 'localhost',
+    port: 6379,
+  },
+});
+
+// Worker to process jobs
+const worker = new Worker('my-queue', async (job) => {
+  console.log(`Processing job ${job.id} with data:`, job.data);
+  // Simulate processing
+  return `Processed job with data: ${JSON.stringify(job.data)}`;
+}, {
+  connection: {
+    host: 'localhost',
+    port: 6379,
+  },
+});
+
+// Event listeners for the worker
+worker.on('completed', (job) => {
+  console.log(`Job ${job.id} completed!`);
+});
+
+worker.on('failed', (job, err) => {
+  console.error(`Job ${job.id} failed with error: ${err.message}`);
+});
+
+// Endpoint to add jobs dynamically
+app.post('/add-job', async (req, res) => {
+  const { data, delay = 0 } = req.body;
+
+  try {
+    const job = await queue.add('my-job', data, { delay });
+    res.status(200).send(`Job ${job.id} added successfully!`);
+  } catch (err) {
+    console.error('Error adding job:', err.message);
+    res.status(500).send('Failed to add job');
+  }
+});
+
+// Root endpoint
+app.get("/", (req, res) => {
+  res.send("Welcome to our API!");
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`API is running on port ${port}`);
+});

@@ -1,0 +1,42 @@
+router.post('/create-file', (req, res) => {
+    const { fileName, content } = req.body;
+
+    // Validate input
+    if (!fileName || !content) {
+        return res.status(400).json({ error: 'fileName and content are required!' });
+    }
+
+ 
+
+    // Write content to the file
+    fs.writeFile(fileName, content, (err) => {
+        if (err) {
+            console.error('Error creating file:', err);
+            return res.status(500).json({ error: 'Failed to create file' });
+        }
+        res.status(200).json({ message: `File '${fileName}' created successfully!` });
+    });
+});
+
+
+?????????????????????
+
+router.post('/create-file', (req, res) => {
+    const { fileName, content } = req.body;
+
+    // Validate input
+    if (!fileName || !content) {
+        return res.status(400).json({ error: 'fileName and content are required!' });
+    }
+
+ 
+
+    // Write content to the file
+    fs.writeFile(fileName, content, (err) => {
+        if (err) {
+            console.error('Error creating file:', err);
+            return res.status(500).json({ error: 'Failed to create file' });
+        }
+        res.status(200).json({ message: `File '${fileName}' created successfully!` });
+    });
+});

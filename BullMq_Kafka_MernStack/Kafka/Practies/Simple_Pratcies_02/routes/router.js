@@ -51,6 +51,7 @@ router.post("/create-user", async (req, res) => {
       topic: "UserRestapi",
       messages: [
         {
+          partition:0,
           key: email, // Fix: Use email as a string key
           value: JSON.stringify(user),
         },

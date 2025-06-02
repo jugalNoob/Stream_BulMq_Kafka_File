@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis-server
+    ports:
+      - "6379:6379"
+
+
+
+# docker-compose up --build
+
+# docker run --name redis-server -p 6379:6379 redis
+
+
+# version: '3.8'
+
+# services:
+#   redis:
+#     image: redis:latest
+#     container_name: redis-server
+#     ports:
+#       - "6379:6379"
+
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.app
+#     container_name: express-app
+#     ports:
+#       - "5000:5000"
+#     depends_on:
+#       - redis
+#     volumes:
+#       - .:/usr/src/app
+#     command: ["node", "app.js"]
+
+#   worker:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.worker
+#     container_name: email-worker
+#     depends_on:
+#       - redis
+#     volumes:
+#       - .:/usr/src/app
+#     command: ["node", "workers/emailWorker.js"]

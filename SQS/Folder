@@ -1,0 +1,6 @@
+/project-root
+│
+├── app.js               # Express server and signup endpoint
+├── routes/signup.js     # Signup route logic
+├── sqs/producer.js      # Sends messages to SQS
+├── sqs/consumer.js      # Consumes messages from SQS and logs notifications

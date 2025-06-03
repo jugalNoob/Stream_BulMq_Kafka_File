@@ -1,0 +1,12 @@
+Client          Express          MongoDB          BullMQ          Worker
+  │               │                │                │               │
+  │─POST /signup─▶│                │                │               │
+  │               │─Create User───▶│                │               │
+  │               │                │──Save User────▶│               │
+  │               │                │                │─Add Email Job─▶│
+  │               │◀──Success──────│                │               │
+  │◀─201 Created──│                │                │               │
+  │               │                │                │──Process Job──▶│
+  │               │                │                │               │─Send Email─┐
+  │               │                │                │               │◀──Done─────┘
+  │               │                │                │               │

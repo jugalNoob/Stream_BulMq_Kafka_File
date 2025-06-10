@@ -8,7 +8,11 @@ const NotificationQueue = require("../queues/noticationQueu");
 
 
 
-// ----  >>>  Deepsea Ai ------->>
+/// ---- >>> How is worker router -- Bull Mq --   MongoDb  -- >>>
+
+
+
+// ----  >>>  Deepsea Ai   how is worker router mongodb bullMq ------->>
 
 router.post('/signupu', async (req, res) => {
     try {

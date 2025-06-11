@@ -1,4 +1,9 @@
-router.post("/nodemail", async (req, res) => {
+const bcrypt = require('bcrypt');
+const shortid = require('shortid');
+const nodemailer = require('nodemailer');
+const Register = require("../module/student"); // Adjust path to your model
+
+exports.first = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -41,5 +46,5 @@ router.post("/nodemail", async (req, res) => {
     console.error('Error in /nodemail:', error);
     return res.status(500).json({ success: false, message: 'Server error' });
   }
-});
+}
 

@@ -26,6 +26,10 @@
 // });
 
 
+      //  user: "sjugal126@gmail.com", // use .env
+      //   pass: "chxe ihkr uqwq okqs",
+
+
 const { Worker } = require('bullmq');
 const nodemailer = require('nodemailer');
 const IORedis = require('ioredis');
@@ -48,13 +52,13 @@ const worker = new Worker(
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-            user: "sjugal126@gmail.com", // use .env
-        pass: "chxe ihkr uqwq okqs",
+            user: "", // use .env
+        pass: "",
       },
     });
 
     const mailOptions = {
-      from: "sjugal126@gmail.com",
+      from: "",
       to: email,
       subject: 'Welcome to Our Service!',
       text: `Hi ${name},\n\nThank you for registering. Your user ID is ${shortId}.`,
